@@ -1,0 +1,9 @@
+<tr>
+  <td> </td>
+  <td><%= hour.start_time.to_formatted_s(:short) %></td>
+  <td><%= hour.ammt %></td>
+  <td><%= hour.notes %>
+  <td><%= link_to 'Del', [hour.task, hour],
+                    :confirm => 'Are you sure you want to delete these hours?',
+                    :method => :delete %>
+</tr>

@@ -1,0 +1,17 @@
+<%= form_for([@task, @task.hours.build]) do |f| %>
+  <div class="field">
+    <%= f.label :amount %>
+    <%= f.text_field :ammt %>
+  </div>
+  <div class="field">
+    <%= f.label :start_time %>
+    <%= f.datetime_select :start_time, :ampm => true %>
+  </div>
+  <div class="field">
+    <%= f.label :notes %>
+    <%= f.text_area :notes %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

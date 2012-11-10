@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Expertise</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  
+  <%= javascript_include_tag "https://www.google.com/jsapi"%>
+</head>
+<body>
+  <div id="container">
+    <header>
+      <h1><%= link_to 'Expertise', root_url %></h1>
+      
+      <ul id="account">
+        <%= render 'devise/menu/registration_items' %>
+        <%= render 'devise/menu/login_items' %>
+      </ul>
+    </header>
+  
+    <%= yield %>
+  
+    <footer>
+      <p>© developed and designed by Tom O'Donnell (<a href="mailto:todonnel91@gmail.com">todonnel91@gmail.com</a>)</p>
+    </footer>
+  </div>
+</body>
+</html>

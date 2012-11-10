@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+  <div id="left_col">
+  <h2><%= @task.name %></h2>
+
+  <p><%= @task.desc %></p>
+
+  <p>Hours (<%= @task.total_hours %>):</p>
+  <table>
+  <%= render @task.hours %>
+  </table>
+
+  <h3>Add Hours:</h3>
+  <%= render "hours/form" %>
+
+  <%= link_to 'Edit', edit_task_path(@task) %> |
+  <%= link_to 'Back', tasks_path %>
+  
+  </div>
+  <div id="right_col">
+    <%= render "hours/chart" %>
+  </div>

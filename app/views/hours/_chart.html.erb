@@ -1,0 +1,108 @@
+
+<script type="text/javascript">
+  google.load('visualization', '1.0', {'packages':['corechart','table','controls']});
+  
+  google.setOnLoadCallback(drawDashboard);
+  
+  function drawDashboard() {
+    var data = new google.visualization.DataTable();
+    var start_date = new Date(<%= @task.created_at.year %>, 0, <%= @task.created_at.yday %>)
+    
+    data.addColumn('date', 'Date');
+    data.addColumn('number', 'Hours');
+    
+    var date = new Date(<%= @task.created_at.year %>, 0, <%= @task.created_at.yday - 7 %>)
+    
+    <% for day in 1..((Time.zone.now - @task.created_at)/60/60/24 + 7).ceil %>
+      data.addRow([date, <%= @task.ammt_hours_in_range(1, :day, ((Time.zone.now - @task.created_at)/60/60/24 + 7).ceil - day) %>]);
+      date = new Date(<%= @task.created_at.year %>, 0, (<%= @task.created_at.yday - 7 + day %>))
+    <% end %>
+    
+    var dashboard = new google.visualization.Dashboard(document.getElementById('gdashboard_div'));
+    
+    // create a range slider
+    var control = new google.visualization.ControlWrapper({
+      'controlType': 'ChartRangeFilter',
+      'containerId': 'gcontrol_div',
+      'state': {
+        'range': {
+          'start': start_date,
+          'end': date
+        }
+      },
+      'options': {
+        'filterColumnIndex': 0,
+        'ui': {
+          'chartType': 'LineChart',
+          'chartOptions': {
+            'chartArea': {'width': '90%'}
+          },
+          'chartView': {'columns': [0,1]},
+          'minRangeSize': 3600
+        }
+      }
+    });
+    
+    var chart = new google.visualization.ChartWrapper({
+      'chartType': 'LineChart',
+      'containerId': 'gchart_div',
+      'options': {
+        'chartArea': {'height': '80%', 'width': '90%'}
+      },
+      'view': {'columns': [
+        {
+          'calc': function(data, rowIndex) {
+            return data.getFormattedValue(rowIndex, 0);
+          },
+          'type': 'string'
+        }, 1]
+      }
+    });
+    
+    var table =  new google.visualization.Table(document.getElementById('gtable_div'));
+    
+    dashboard.bind(control, chart);
+    dashboard.draw(data);
+    table.draw(data);
+  }
+</script>
+
+<div id="gdashboard_div">
+  <div id="gchart_div" style="width: 400px; height 300px;"></div>
+  <div id="gcontrol_div" style="width: 400px; height: 50px;"></div>
+  <div id="gtable_div" style="width: 400px;"></div>
+</div>
+
+<!-- OLD
+<script type="text/javascript">
+  google.load("visualization", "1", {packages:["corechart"]});
+  google.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ['Day', 'Hours']
+      <% @task.by_day.each_with_index do |day, i| %>
+        , [<%= 7-i %>, <%= day %>]
+      <% end %>
+    ]);
+    
+    var options = {
+      title: 'Hours over Past Week'
+    };
+    
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+  }
+</script>
+
+<div id="chart_div" style="width: 400px; height: 300px;"></div>
+
+<h3>This Week</h3>
+<table>
+<% @task.by_day.each_with_index  do |day, i| %>
+  <tr>
+    <td><%= i %> days ago</td>
+    <td><%= day %> hours</td>
+  </tr>
+<% end %>
+</table>
+-->

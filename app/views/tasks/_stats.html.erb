@@ -1,0 +1,21 @@
+<script type="text/javascript">
+  google.load("visualization", "1", {packages:["corechart"]});
+  google.setOnLoadCallback(drawChart);
+  function drawChart() {
+<%
+    ###!!! THE USE OF RAW CREATES AN XSS VULNERABILITY !!!###
+    # to protect from XSS attacks rails escapes quotes and like characters, e.g. &quot;
+    # the function raw allows for whatever is entered to be introduced to the source
+%>
+    var data = google.visualization.arrayToDataTable(<%= raw @tasks_by_day.to_s %>);
+    
+    var options = {
+      title: 'Tasks over the Past Week'
+    };
+    
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+  }
+</script>
+
+<div id="chart_div" style="width: 400px; height: 300px;"></div>
