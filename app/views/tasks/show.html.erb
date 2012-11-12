@@ -12,8 +12,8 @@
   <h3>Add Hours:</h3>
   <%= render "hours/form" %>
 
-  <%= link_to 'Edit', edit_task_path(@task) %> |
-  <%= link_to 'Back', tasks_path %>
+  <%= link_to 'Edit Task Details', edit_task_path(@task) %> |
+  <%= link_to 'Delete Task', @task, method: :delete, data: { confirm: 'Are you sure? This task and all the hours and notes associated with it will be permanently destroyed!' } %>
   
   </div>
   <div id="right_col">

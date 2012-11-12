@@ -1,14 +1,8 @@
 --- 
 cursor_positions: 
-  - :path: app/assets/stylesheets/application.css
-    :cursor_offset: 0
-    :timestamp: 2012-11-02 02:54:13 -04:00
   - :path: app/assets/stylesheets/tasks.css.scss
     :cursor_offset: 0
     :timestamp: 2012-11-02 18:30:22 -04:00
-  - :path: config/database.yml
-    :cursor_offset: 0
-    :timestamp: 2012-11-03 12:33:14 -04:00
   - :path: config/environments/development.rb
     :cursor_offset: 844
     :timestamp: 2012-11-03 12:49:37 -04:00
@@ -18,9 +12,6 @@ cursor_positions:
   - :path: db/migrate/20121103165058_devise_create_users.rb
     :cursor_offset: 856
     :timestamp: 2012-11-03 13:29:55 -04:00
-  - :path: Gemfile
-    :cursor_offset: 830
-    :timestamp: 2012-11-03 14:29:21 -04:00
   - :path: app/controllers/omniauth_callbacks_controller.rb
     :cursor_offset: 497
     :timestamp: 2012-11-03 14:52:47 -04:00
@@ -113,4 +104,13 @@ cursor_positions:
   - :path: config/environment.rb
     :cursor_offset: 0
     :timestamp: 2012-11-10 13:34:08 -05:00
+  - :path: Gemfile
+    :cursor_offset: 148
+    :timestamp: 2012-11-10 14:01:44 -05:00
+  - :path: config/database.yml
+    :cursor_offset: 414
+    :timestamp: 2012-11-11 23:45:37 -05:00
+  - :path: app/assets/stylesheets/application.css
+    :cursor_offset: 0
+    :timestamp: 2012-11-10 13:34:09 -05:00
 files_to_retain: 0

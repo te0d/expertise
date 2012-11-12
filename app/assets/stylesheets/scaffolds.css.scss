@@ -14,25 +14,31 @@ body {
 
 header {
   width: 100%;
-  margin: 5px auto;
-  border-bottom: 5px dashed black;
+  background-color: #90EE90;
+  border-bottom: 3px dashed black;
   overflow: auto;
   h1 {
     float: left;
+    margin: 15px 25px;
     padding: 20px 5px;
+    font-size: 4em;
     color: black;
     a {
       text-decoration: none;
     }
     a:link, a:visited, a:hover {
       color: black;
-      background-color: white;
+      background-color: #90EE90;
     }
   }
   #account {
     float: right;
-    width: 20%;
-    padding: 10px 5px;
+    padding: 5px 15px;
+    margin: 15px 25px;
+    background-color: white;
+    border: 1px dotted black;
+    border-radius: 5px;
+    list-style-type: none;
   }
 }
 

@@ -1,4 +1,4 @@
-1352574366
+1352700174
 AddNotesToHours	/home/todonnell/Projects/Expertise/deployed/db/migrate/20121110162932_add_notes_to_hours.rb	class AddNotesToHours 
 AddPublicToTask	/home/todonnell/Projects/Expertise/deployed/db/migrate/20121110171015_add_public_to_task.rb	class AddPublicToTask 
 AddStartTimeToHours	/home/todonnell/Projects/Expertise/deployed/db/migrate/20121102180642_add_start_time_to_hours.rb	class AddStartTimeToHours 
