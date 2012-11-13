@@ -1,7 +1,9 @@
 class Task < ActiveRecord::Base
   has_many :hours, :dependent => :destroy
   belongs_to :user
-  attr_accessible :desc, :name, :public
+  attr_accessible :desc, :name, :public, :priority
+  
+  validates :priority, :numericality => {:only_integer => true, :greater_than_or_equal_to => 0, :less_than_or_equal_to => 3}
   
   def total_hours
     self.hours.sum("ammt").to_f.round(2)

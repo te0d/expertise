@@ -6,7 +6,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = current_user.tasks
+    @tasks = current_user.tasks.order("priority DESC")
     @tasks_by_day = Array.new
     
     # tasks_by_day is used by the index page to display

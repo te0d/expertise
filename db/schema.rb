@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121110171015) do
+ActiveRecord::Schema.define(:version => 20121113223447) do
 
   create_table "hours", :force => true do |t|
     t.decimal  "ammt"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20121110171015) do
     t.datetime "updated_at",                    :null => false
     t.integer  "user_id"
     t.boolean  "public",     :default => false
+    t.integer  "priority",   :default => 2
   end
 
   create_table "users", :force => true do |t|

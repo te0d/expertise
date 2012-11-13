@@ -3,6 +3,7 @@
   
   <table>
     <tr>
+      <th></th>
       <th>Name</th>
       <th>Desc</th>
       <th>Hours</th>
@@ -10,6 +11,18 @@
   
   <% @tasks.each do |task| %>
     <tr>
+      <td>
+        <% case task.priority %>
+          <% when 3 %>
+            ★★★
+          <% when 2 %>
+            ★★☆
+          <% when 1 %>
+            ★☆☆
+          <% when 0 %>
+            ☆☆☆
+        <% end %>
+      </td>
       <td><%= link_to task.name, task %></td>
       <td><%= task.desc %></td>
       <td><%= task.total_hours %></td>
@@ -19,7 +32,7 @@
 
   <br />
   
-  <%= link_to 'New Task', new_task_path %>
+  <%= button_to 'New Task', new_task_path, :method => 'get' %>
 </div>
 <div id="right_col">
   <%= render "stats"%>
