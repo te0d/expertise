@@ -5,7 +5,7 @@
   </div>
   <div class="field">
     <%= f.label :start_time %>
-    <%= f.datetime_select :start_time, :ampm => true %>
+    <%= f.datetime_select :start_time, :ampm => true, :minute_step => 15 %>
   </div>
   <div class="field">
     <%= f.label :notes %>

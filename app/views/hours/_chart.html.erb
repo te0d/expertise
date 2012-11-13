@@ -13,9 +13,9 @@
     
     var date = new Date(<%= @task.created_at.year %>, 0, <%= @task.created_at.yday - 7 %>)
     
-    <% for day in 1..((Time.zone.now - @task.created_at)/60/60/24 + 7).ceil %>
+    <% for day in 1...((Time.zone.now - @task.created_at)/60/60/24 + 7).ceil %>
       data.addRow([date, <%= @task.ammt_hours_in_range(1, :day, ((Time.zone.now - @task.created_at)/60/60/24 + 7).ceil - day) %>]);
-      date = new Date(<%= @task.created_at.year %>, 0, (<%= @task.created_at.yday - 7 + day %>))
+      date = new Date(<%= @task.created_at.year %>, 0, (<%= @task.created_at.yday - 6 + day %>))
     <% end %>
     
     var dashboard = new google.visualization.Dashboard(document.getElementById('gdashboard_div'));
