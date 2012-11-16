@@ -9,8 +9,7 @@ class User < ActiveRecord::Base
   has_many :tasks
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :time_zone, :provider, :uid
-  # attr_accessible :title, :body
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :time_zone, :provider, :uid, :current_password
   
   # for da omniauth
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
