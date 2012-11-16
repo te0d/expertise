@@ -17,7 +17,7 @@ class TasksController < ApplicationController
     
     for i in 0..6
       @tasks_by_day[i+1] = Array.new
-      @tasks_by_day[i+1][0] = 7-i
+      @tasks_by_day[i+1][0] = "new Date(#{Date.today.year}, 0, #{Date.today.yday - (i)})"
       @tasks_by_day[i+1][1] = 0
     end
     

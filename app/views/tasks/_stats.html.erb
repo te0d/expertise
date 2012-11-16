@@ -7,7 +7,19 @@
     # to protect from XSS attacks rails escapes quotes and like characters, e.g. &quot;
     # the function raw allows for whatever is entered to be introduced to the source
 %>
-    var data = google.visualization.arrayToDataTable(<%= raw @tasks_by_day.to_s %>);
+    var data = new google.visualization.DataTable();
+    var start_date = new Date();
+    var end_date = new Date(Date.now());
+    start_date.setDate(end_date.getDate()-7);
+    
+    data.addColumn('date', 'Date');
+    data.addColumn('number', 'Total');
+    
+    <% @tasks.each do |task| %>
+      data.addColumn('number', '<%= task.name %>')
+    <% end %>
+    
+    data.addRows(<%= @tasks_by_day[1..-1].reverse.to_s.gsub('"','') %>)
     
     var options = {
       title: 'Tasks over the Past Week'
