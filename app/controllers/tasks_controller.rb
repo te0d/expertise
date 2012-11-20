@@ -13,20 +13,17 @@ class TasksController < ApplicationController
     # all tasks on a single chart (requiring a 2D array)
     @tasks_by_day[0] = Array.new
     @tasks_by_day[0][0] = "Day"
-    @tasks_by_day[0][1] = "Total"
     
     for i in 0..6
       @tasks_by_day[i+1] = Array.new
       @tasks_by_day[i+1][0] = "new Date(#{Date.today.year}, 0, #{Date.today.yday - (i)})"
-      @tasks_by_day[i+1][1] = 0
     end
     
     @tasks.each_with_index do |task, i|
-      @tasks_by_day[0][i+2] = task.name
+      @tasks_by_day[0][i+1] = task.name
       
       task.by_day.each_with_index do |hour, j|
-        @tasks_by_day[j+1][i+2] = hour
-        @tasks_by_day[j+1][1] += hour
+        @tasks_by_day[j+1][i+1] = hour
       end
     end
 
