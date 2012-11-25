@@ -19,7 +19,7 @@ class TasksController < ApplicationController
       @tasks_by_day[i+1][0] = "new Date(#{Date.today.year}, 0, #{Date.today.yday - (i)})"
     end
     
-    @tasks.each_with_index do |task, i|
+    @tasks.reverse.each_with_index do |task, i|
       @tasks_by_day[0][i+1] = task.name
       
       task.by_day.each_with_index do |hour, j|

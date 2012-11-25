@@ -14,7 +14,7 @@
     
     data.addColumn('date', 'Date');
     
-    <% @tasks.each do |task| %>
+    <% @tasks.reverse.each do |task| %>
       data.addColumn('number', '<%= task.name %>')
     <% end %>
     
