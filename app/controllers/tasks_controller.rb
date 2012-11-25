@@ -14,7 +14,7 @@ class TasksController < ApplicationController
     @tasks_by_day[0] = Array.new
     @tasks_by_day[0][0] = "Day"
     
-    for i in 0..6
+    for i in 0...30
       @tasks_by_day[i+1] = Array.new
       @tasks_by_day[i+1][0] = "new Date(#{Date.today.year}, 0, #{Date.today.yday - (i)})"
     end
@@ -22,7 +22,7 @@ class TasksController < ApplicationController
     @tasks.reverse.each_with_index do |task, i|
       @tasks_by_day[0][i+1] = task.name
       
-      task.by_day.each_with_index do |hour, j|
+      task.by_period(:day, 30).each_with_index do |hour, j|
         @tasks_by_day[j+1][i+1] = hour
       end
     end

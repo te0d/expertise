@@ -8,18 +8,6 @@ class Task < ActiveRecord::Base
   def total_hours
     self.hours.sum("ammt").to_f.round(2)
   end
-
-''' OLD '''
-  def by_day
-    day_count = Array.new
-    
-    for i in 0..6
-      day_count.push(self.hours.where(:start_time => ((DateTime.now.in_time_zone(self.user.time_zone).midnight - i.day)..(DateTime.now.in_time_zone(self.user.time_zone).midnight - (i-1).day))).sum("ammt").to_f.round(2))
-    end
-    
-    return day_count
-  end
-''' OLD '''
   
   def hours_in_range(range, period, offset = 0)
     range_end = DateTime.now.in_time_zone(self.user.time_zone).midnight + 1.day
@@ -54,11 +42,38 @@ class Task < ActiveRecord::Base
     
     return hours_in_range.sum("ammt").to_f.round(2)
   end
-  
-'''
-  def by_period(period)
-    ammt_hours = Array.new
+
+''' OLD '''
+  def by_day
+    day_count = Array.new
     
+    for i in 0..6
+      day_count.push(self.hours.where(:start_time => ((DateTime.now.in_time_zone(self.user.time_zone).midnight - i.day)..(DateTime.now.in_time_zone(self.user.time_zone).midnight - (i-1).day))).sum("ammt").to_f.round(2))
+    end
+    
+    return day_count
   end
-'''
+''' OLD '''
+
+  def by_period(period, range=30)
+    period_count = Array.new
+    
+    for offset in 0...range
+      
+      a_count = case period
+        when :day
+          self.ammt_hours_in_range(1, :day, offset)
+        when :week
+          self.ammt_hours_in_range(1, :week, offset)
+        when :month
+          self.ammt_hours_in_range(1, :month, offset)
+        when :year
+          self.ammt_hours_in_year(1, :year, offset)
+      end
+      
+      period_count.push(a_count)
+    end
+    
+    return period_count
+  end
 end

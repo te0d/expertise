@@ -21,7 +21,7 @@
     data.addRows(<%= @tasks_by_day[1..-1].reverse.to_s.gsub('"','') %>)
     
     var options = {
-      title: 'Tasks over the Past Week',
+      title: 'Tasks over the Past 30 Days',
       isStacked: true,
       vAxis: {title: 'Hours'},
       hAxis: {title: 'Day'}
@@ -32,4 +32,4 @@
   }
 </script>
 
-<div id="chart_div" style="width: 400px; height: 300px;"></div>
+<div id="chart_div" style="width: 500px; height: 350px;"></div>
