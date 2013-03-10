@@ -1,0 +1,6 @@
+--- 
+open_files: 
+  - app/views/tasks/show.html.erb
+  - app/views/hours/_form.html.erb
+  - app/views/tasks/_form.html.erb
+  - app/models/task.rb
